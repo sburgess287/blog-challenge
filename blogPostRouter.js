@@ -31,6 +31,7 @@ router.get('/', (req, res) => {
 // POST endpoint: remember to add content type/application/json 
 // and also the raw json object in the Body
 router.post('/', jsonParser, (req, res) => {
+    // verify all required fields are present in the request or return error
     const requiredFields = ['title', 'content', 'author', 'publishDate'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -53,10 +54,33 @@ router.delete('/:id', (req, res) => {
 });
 
 
-
-
 // PUT
-
+router.put('/:id', jsonParser, (req, res) => {
+    // verify all required fields are present in the request or return error
+    const requiredFields = ['title', 'content', 'author', 'publishDate'];
+    for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing ${field} in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    if (req.params.id !== req.body.id) {
+        const message = `Request path id(${req.params.id}) is required`
+        console.error(message);
+        return res.status(400).send(message);
+    }
+    console.log(`Updating blogPost ${req.params.id}`);
+    BlogPosts.update({
+        id: req.params.id,
+        title: req.params.title, 
+        content: req.params.content,
+        author: req.params.author,
+        publishDate: req.params.publishDate
+    });
+    res.status(204).end();
+});
 
 
 
