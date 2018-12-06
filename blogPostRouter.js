@@ -15,7 +15,7 @@ BlogPosts.create(
 );
 
 BlogPosts.create(
-    'How to Bake a Cake', 
+    'How to Bake a Cake Today', 
     ['Mauris condimentum, purus vel euismod bibendum, ipsum arcu pellentesque nunc'], 
     'Juniper Jones', 
     '9/12/15'
@@ -54,10 +54,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// PUT
+// PUT endpoint: Get ID and put into request and endpoint url
 router.put('/:id', jsonParser, (req, res) => {
     // verify all required fields are present in the request or return error
-    const requiredFields = ['title', 'content', 'author', 'publishDate'];
+    const requiredFields = ["id","title", "content", "author", "publishDate"];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -72,6 +72,7 @@ router.put('/:id', jsonParser, (req, res) => {
         return res.status(400).send(message);
     }
     console.log(`Updating blogPost ${req.params.id}`);
+    // Ask Thomas
     BlogPosts.update({
         id: req.params.id,
         title: req.params.title, 
