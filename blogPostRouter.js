@@ -44,7 +44,13 @@ router.post('/', jsonParser, (req, res) => {
     res.status(201).json(item);
 });
 
-// DELETE
+// DELETE: remember to do GET
+// Then add ID to the endpoint
+router.delete('/:id', (req, res) => {
+    BlogPosts.delete(req.params.id);
+    console.log(`Deleted Blog Post ${req.params.id}`);
+    res.status(204).end();
+});
 
 
 
