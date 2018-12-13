@@ -79,4 +79,22 @@ describe("blogPosts", function() {
 
     });
 
+    // Test DELETE endpoint
+    // GET blog posts to get id of 1
+    // DELETE item and ensure it returns 204
+    it("should delete blog post on DELETE", function(){
+        return(
+            chai
+                .request(app)
+                // Get blog post and ID of one item
+                .get("/blog-posts")
+                .then(function(res) {
+                    return chai.request(app).delete(`/blog-posts/${res.body[0].id}`);
+                })
+                .then(function(res) {
+                    expect(res).to.have.status(204);
+                })
+        );
+    });
+
 });
