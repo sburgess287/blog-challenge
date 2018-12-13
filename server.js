@@ -11,7 +11,8 @@ const blogPostRouter = require('./blogPostRouter');
 
 app.use(express.static('public'));
 
-// if I want to serve html file
+// if I want to create, serve html file
+// otherwise go to Heroku : fast-journey
 // app.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/views/index.html");
 // });
