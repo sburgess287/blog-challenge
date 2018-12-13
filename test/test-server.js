@@ -97,4 +97,42 @@ describe("blogPosts", function() {
         );
     });
 
+    // Test PUT endpoint to update a blog Post
+    // 1. Initialize data
+    // 2. Make GET request to get ID of item to update
+    // 3. add id to `updateData`
+    // 4. make PUT request with `updateData`
+    // 5. Inspect response object for status code and key/values
+    it("should update recipe items on PUT", function() {
+        const updateData = {
+            "title": "Building Rockets to the Moon", 
+            "content": ["Duis aute irure dolor in reprehenderit in voluptate"],
+            "author": "Mary Johnson",
+            "publishDate": "11/19/18"
+        };
+
+        return(
+            chai
+                .request(app)
+                // get object to update
+                .get("/blog-posts")
+                // get the ID in the response object
+                .then(function(res) {
+                    updateData.id = res.body[0].id;
+                    return chai
+                        .request(app)
+                        .put(`/blog-posts/${updateData.id}`)
+                        .send(updateData);
+                })
+            // Prove PUT request has correct status code and updated item
+            .then(function(res) {
+                expect(res).to.have.status(204);
+                // response returns an empty object, so do I need to do another GET and verify?
+               // expect(res.body).to.be.json;
+               // expect(res.body).to.be.a("object");
+               // expect(res.body).to.deep.equal(updateData);
+            })
+        )
+    })
+
 });
