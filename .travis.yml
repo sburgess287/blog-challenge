@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: TPi3Fm2EvJXGHRwYShJVcqNAnyztZ8g/LkjIPW5xn82lcxMDJynP9vy5fDMSFA9aXTo1koMV9BlmshiqrIHVFqPLBHaJEJlb5MNByRPtE6M10Crgw0WGvpHkGYjlxw/MYCgt8iM/g6y0C75MRxJ9+YqIAavMAkv6CKAhYIXuZerJNwjUOe6cFgFRR0w5rFm7EDdft96xira7zoPLY20/3skCBwrB1DutSVPrYkjq7Tupw/r7A/DQKQoe3GkbgdaF2gv+SFSgRf05yMIE9PaQ0yzr5YQgP+Rj3bqUBN5FsudPS2OM+f9zVYIm/E2QvtGa189FjU/oV2+tcvD9Cltj9BEOH1MeDszH8QmIuvIUe0i73TLZBocsSwv5h9/TPhzApLSbcQF7kp9iuqsdF1uX06FZMe28/pAxyycA4WgzAS65XS0ynn3v70OqEmiVRAk5RZxB8/j0J0WwxQpGbFJijKlT+I+8FqXCSbDwSv/za2D/zpXQVY+D3vyexyLAPTmM0AkrRlhaFJbO47LRcPvQrBcGpzKSDmKtV1IutQPSyERrMLIy+VHUF1+0Khine/D3htMp07UnH0qbfaUK7HVhVc2rR5QdT2bpEYTYwntciNRgQNH37qexeUWJDjL2fw5lSneazWxC1UBjENcgbz2Ra/FZ3ZIeNrE5gTn3f5CR6Q0=
+  app: https://git.heroku.com/fast-journey-59079.git
+  on:
+    repo: sburgess287/blog-challenge
