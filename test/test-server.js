@@ -127,9 +127,10 @@ describe("blogPosts", function() {
             // Prove PUT request has correct status code and updated item
             .then(function(res) {
                 expect(res).to.have.status(204);
-                // response returns an empty object, so do I need to do another GET and verify?
+                // response returns an empty object, 
+                // so do I need to do another GET and verify?
                // expect(res.body).to.be.json;
-               // expect(res.body).to.be.a("object");
+                expect(res.body).to.be.a("object");
                // expect(res.body).to.deep.equal(updateData);
             })
         )
