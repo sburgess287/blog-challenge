@@ -1,5 +1,5 @@
 const express = require('express');
-const morgan = require("morgan");
+//const morgan = require("morgan");
 
 const app = express();
 app.use(express.json());
@@ -7,7 +7,7 @@ app.use(express.json());
 const blogPostRouter = require('./blogPostRouter');
 
 // log the http layer
-app.use(morgan("common"));
+//app.use(morgan("common"));
 
 app.use(express.static('public'));
 
