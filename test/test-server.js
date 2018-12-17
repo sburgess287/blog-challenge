@@ -1,10 +1,12 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const {BlogPosts} = require('../model');
 
 const { app, runServer, closeServer } = require("../server");
 
 // Use expect style syntax 
 const expect = chai.expect;
+
 
 // Use chai HTTP requests
 chai.use(chaiHttp);
@@ -50,7 +52,7 @@ describe("blogPosts", function() {
             });    
     });
 
-    // Test POST endpoint
+    // Test POST endpoint asld
     // 1. Make Post request with data for new item
     // 2. Inspect response object and prove it has correct status and an id
     it("should add blog post item on POST", function() {
@@ -103,7 +105,7 @@ describe("blogPosts", function() {
     // 3. add id to `updateData`
     // 4. make PUT request with `updateData`
     // 5. Inspect response object for status code and key/values
-    it("should update recipe items on PUT", function() {
+    it("should update blog items on PUT", function() {
         const updateData = {
             "title": "Building Rockets to the Moon", 
             "content": ["Duis aute irure dolor in reprehenderit in voluptate"],
@@ -119,6 +121,7 @@ describe("blogPosts", function() {
                 // get the ID in the response object
                 .then(function(res) {
                     updateData.id = res.body[0].id;
+                    expect(BlogPosts.get(updateData.id)).to.not.eql(updateData);
                     return chai
                         .request(app)
                         .put(`/blog-posts/${updateData.id}`)
@@ -127,9 +130,8 @@ describe("blogPosts", function() {
             // Prove PUT request has correct status code and updated item
             .then(function(res) {
                 expect(res).to.have.status(204);
-                // response returns an empty object, 
-                // so do I need to do another GET and verify?
-                expect(res.body).to.be.a("object");
+                // console.log(BlogPosts.get(updateData.id));
+                expect(BlogPosts.get(updateData.id)).to.deep.equal(updateData);
             })
         )
     })

@@ -4,7 +4,9 @@
   "description": "",
   "main": "model.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "hello": "echo 'hello!'",
+    "prehello": "npm test"
   },
   "author": "",
   "license": "ISC",
